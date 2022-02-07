@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS Bees;
 DROP TABLE IF EXISTS Tasks;
 DROP TABLE IF EXISTS Cells;
+DROP TABLE IF EXISTS Bee_Types;
 
 --Remove these-------------------------------------------
 CREATE TABLE user (                                    --

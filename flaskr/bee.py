@@ -1,53 +1,39 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, url_for
 )
-from werkzeug.exceptions import abort
-from flaskr.db import get_db
+from flask import request
+from werkzeug.exceptions import abort   #TODO Delete?
+from flaskr.db import get_db            #TODO Delete?
+from flaskr.db_connector import connect_to_database, execute_query
+
 
 bp = Blueprint('bee', __name__)
 
+
 @bp.route('/bee')
 def index():
-    db = get_db()
-    Bees = db.execute(
-        'SELECT bee_id, bee_type, dob, bee_name'
-        ' FROM Bees'
-        ' ORDER BY bee_id DESC'
-    ).fetchall()
-    return render_template('bee/index.html', Bees=Bees)
+    print("Hello")
+    db_connection = connect_to_database()
+    query = 'SELECT bee_id, bee_type, dob, bee_name FROM Bees ORDER BY bee_id DESC;'
+    result = execute_query(db_connection, query).fetchall();
+    print(result)
 
+    return render_template('bee/index.html', rows=result)
 
-@bp.route('/createBee', methods=('GET', 'POST'))
+#TODO Figure out how to reroute after a creation
+@bp.route('/createBee', methods=['GET', 'POST'])
 def create():
-    if request.method == 'POST':
+    db_connection = connect_to_database()
+    if request.method == 'GET':
+        return render_template('bee/createBee.html')
+    elif request.method == 'POST':
         bee_type = request.form['bee_type']
         dob = request.form['dob']
         bee_name = request.form['bee_name']
-        error = None
+        query = 'INSERT INTO Bees (bee_type, dob, bee_name) VALUES (%s,%s,%s)'
+        data = (bee_type, dob, bee_name)
+        execute_query(db_connection, query, data)
 
-        if error is not None:
-            flash(error)
-        else:
-            db = get_db()
-            db.execute(
-                'INSERT INTO post (bee_type, dob, bee_name)'
-                ' VALUES (?, ?, ?)',
-                (bee_type, dob, g.Bees['bee_id'])
-            )
-            db.commit()
-            return redirect(url_for('bee.index'))
+        return render_template('bee/createBee.html')
 
-    return render_template('bee/createBee.html')
 
-def get_Bees(id):
-    post = get_db().execute(
-        'SELECT bee_id, bee_type, dob, bee_name'
-        ' FROM Bees'
-        ' ORDER BY bee_id DESC'
-        (id,)
-    ).fetchone()
-
-    if Bees is None:
-        abort(404, f"Bees bee_id {bee_id} doesn't exist.")
-
-    return post

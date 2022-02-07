@@ -6,35 +6,29 @@
 {% endblock %}
 
 {% block content %}
-<p>DB is not connected, create, update, and delete non-functional</p>
-<p>This table is static and will be replaced with a dynamic table </p>
+<p>DB is connected, create works -- update and delete are non-functional</p>
 
 <table>
   <thead>
     <tr>
-      <th> bee_id</th>
-      <th> bee_Type</th>
-      <th> dob</th>
-      <th> bee_name</th>
+      <th> Bee Id</th>
+      <th> Bee Type</th>
+      <th> Date of Birth</th>
+      <th> Bee Name</th>
       <th> update // delete</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>001</td>
-      <td>03</td>
-      <td>11/29/1995</td>
-      <td>Honey Bo</td>
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
-    </tr>
-    <tr>
-      <td>002</td>
-      <td>07</td>
-      <td>2/4/1998</td>
-      <td>Buzz McFly</td>
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
-    </tr>
-  </tbody>
+  {% for r in rows %}
+    <tbody>
+      <tr>
+        <td>{{ r.0 }}</td>
+        <td>{{ r[1] }}</td>
+        <td>{{ r[2] }}</td>
+        <td>{{ r[3] }}</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
+      </tr>
+    </tbody>
+  {% endfor %}
 </table>
 
 {% endblock %}

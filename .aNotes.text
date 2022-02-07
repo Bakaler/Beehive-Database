@@ -14,3 +14,16 @@ $ flask init-db
 
 Exit venv
 $ deactivate
+
+gunicorn -w 4 -b 0.0.0.0:30995 -D 'flaskr:create_app()'
+ps ax | grep gunicorn
+
+
+app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
+app.config['MYSQL_USER'] = 'cs340_bakera5'
+app.config['MYSQL_PASSWORD'] = '2817'
+app.config['MYSQL_DB'] = 'cs340_bakera5'
+app.config['MYSQL_CURSORCLASS'] = "DictCursor"
+
+TODO --
+

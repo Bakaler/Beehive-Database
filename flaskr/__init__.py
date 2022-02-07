@@ -28,7 +28,6 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
 
-
     """
     overrides the default configuration with values taken from the config.py file in the instance folder 
     if it exists. For example, when deploying, this can be used to set a real SECRET_KEY.
@@ -57,21 +56,23 @@ def create_app(test_config=None):
 
     from . import bee
     app.register_blueprint(bee.bp)
+    app.add_url_rule('/bee', endpoint='index')
     
     from . import cell
     app.register_blueprint(cell.bp)
+    app.add_url_rule('/cell', endpoint='index')
         
     from . import task
     app.register_blueprint(task.bp)
+    app.add_url_rule('/task', endpoint='index')
 
     from . import bee_type
     app.register_blueprint(bee_type.bp)
+    app.add_url_rule('/bee_type', endpoint='index')
 
     from . import home
     app.register_blueprint(home.bp)
+    
     app.add_url_rule('/', endpoint='index')
 
     return app
-
-
-
