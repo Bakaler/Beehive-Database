@@ -20,9 +20,9 @@ def index():
 @bp.route('/createBee', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
-        bee_type = request.form['Bee type']
-        dob = request.form['Date of Birth']
-        bee_name = request.form['Bee Name']
+        bee_type = request.form['bee_type']
+        dob = request.form['dob']
+        bee_name = request.form['bee_name']
         error = None
 
         if error is not None:

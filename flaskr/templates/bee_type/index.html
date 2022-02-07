@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Cells{% endblock %}</h1>
-  <a class="action" href="{{ url_for('cell.create') }}">Create Cell</a>
+  <h1>{% block title %}Bee Types{% endblock %}</h1>
+    <a href="{{ url_for('bee_type.create') }}">Create Bee Type</a>
 {% endblock %}
 
 {% block content %}
@@ -12,28 +12,29 @@
 <table>
   <thead>
     <tr>
-      <th> cell_id</th>
-      <th> cell_Type</th>
-      <th> location</th>
-      <th> size</th>
+      <th> bee_id</th>
+      <th> bee_Type</th>
+      <th> dob</th>
+      <th> bee_name</th>
       <th> update // delete</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>001</td>
-      <td>Honey Comb</td>
-      <td>Cluster_01</td>
-      <td>5</td>
+      <td>03</td>
+      <td>11/29/1995</td>
+      <td>Honey Bo</td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
     </tr>
     <tr>
       <td>002</td>
-      <td>Lair</td>
-      <td>Cluster_02</td>
-      <td>5</td>
+      <td>07</td>
+      <td>2/4/1998</td>
+      <td>Buzz McFly</td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
     </tr>
   </tbody>
 </table>
+
 {% endblock %}

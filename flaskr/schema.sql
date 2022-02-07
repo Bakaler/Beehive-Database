@@ -41,3 +41,10 @@ CREATE TABLE Tasks (
   description VARCHAR(1000) NOT NULL,
   assignment_length INTEGER
 );
+
+CREATE TABLE Bee_Types (
+  type_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+  type_name VARCHAR(255) NOT NULL,
+  age VARCHAR(10) NOT NULL,
+  description VARCHAR(1000) NOT NULL
+);

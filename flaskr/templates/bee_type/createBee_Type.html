@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Bee Type{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="bee_type">
+    <label for="type_name">Type Name</label>
+    <input name="type_name" value="{{ request.form['type_name'] }}" required>
+    
+    <label for="age">Age Range</label>
+    <input name="age" value="{{ request.form['age'] }}" required>
+
+    <label for="description">Description</label>
+    <input name="description" value="{{ request.form['description'] }}" required>
+
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

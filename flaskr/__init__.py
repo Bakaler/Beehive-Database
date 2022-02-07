@@ -49,11 +49,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
     from . import db
     db.init_app(app)
 
@@ -68,6 +63,9 @@ def create_app(test_config=None):
         
     from . import task
     app.register_blueprint(task.bp)
+
+    from . import bee_type
+    app.register_blueprint(bee_type.bp)
 
     from . import home
     app.register_blueprint(home.bp)
