@@ -1,0 +1,14 @@
+
+Enter Vitsual Environment
+$ . venv/bin/activate
+
+Run The Application
+$ export FLASK_APP=flaskr
+$ export FLASK_ENV=development
+$ flask run --port xxxx
+
+(Do this before running if you update the db)
+Initialize the Database File
+$ flask init-db
+
+

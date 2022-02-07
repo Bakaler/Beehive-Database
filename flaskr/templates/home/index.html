@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Hive Homepage{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h1> Bees </h1>
+<a href="{{ url_for('bee.index') }}">Beelist</a>
+<a href="{{ url_for('bee.create') }}">Bee create</a>
+<a href="{{ url_for('bee.index') }}">Bee update</a>
+
+<h1> Cells </h1>
+<a href="{{ url_for('cell.index') }}">Cell list</a>
+<a href="{{ url_for('cell.create') }}">Cell create</a>
+<a href="{{ url_for('cell.index') }}">Cell update</a>
+
+<h1> Task </h1>
+<a href="{{ url_for('task.index') }}">Task list</a>
+<a href="{{ url_for('task.create') }}">Task create</a>
+<a href="{{ url_for('task.index') }}">Task update</a>
+
+
+{% endblock %}

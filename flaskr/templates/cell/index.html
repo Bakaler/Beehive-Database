@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Cells{% endblock %}</h1>
+  <a class="action" href="{{ url_for('cell.create') }}">Create Cell</a>
+{% endblock %}
+
+{% block content %}
+<p>DB is not connected, create, update, and delete non-functional</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> cell_id</th>
+      <th> cell_Type</th>
+      <th> location</th>
+      <th> size</th>
+      <th> update // delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>001</td>
+      <td>Honey Comb</td>
+      <td>Cluster_01</td>
+      <td>5</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
+    </tr>
+    <tr>
+      <td>002</td>
+      <td>Lair</td>
+      <td>Cluster_02</td>
+      <td>5</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Task{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="task">
+    <label for="bee_type">Task type</label>
+    <input name="task_type" value="{{ request.form['task_type'] }}" required>
+    
+    <label for="description">Description</label>
+    <input name="description" value="{{ request.form['description'] }}" required>
+
+    <label for="assignment_length">Assignment Length</label>
+    <input name="assignment_length" value="{{ request.form['assignment_length'] }}" required>
+
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

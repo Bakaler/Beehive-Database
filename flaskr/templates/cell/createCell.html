@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Cell{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="cell">
+    <label for="cell_type">cell_type</label>
+    <input name="cell_type" value="{{ request.form['cell_type'] }}" required>
+    
+    <label for="location">Location</label>
+    <input name="location" value="{{ request.form['location'] }}" required>
+
+    <label for="size">size</label>
+    <input name="size" value="{{ request.form['size'] }}" required>
+
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

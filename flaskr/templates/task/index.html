@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Tasks{% endblock %}</h1>
+    <a href="{{ url_for('task.create') }}">Create Task</a>
+{% endblock %}
+
+{% block content %}
+<p>DB is not connected, create, update, and delete non-functional</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> task_id</th>
+      <th> task_Type</th>
+      <th> description</th>
+      <th> assignment_length</th>
+      <th> update // delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>001</td>
+      <td>Clean</td>
+      <td>Clean the HoneyComb</td>
+      <td>1</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
+    </tr>
+    <tr>
+      <td>002</td>
+      <td>Guard</td>
+      <td>Protect Entrance</td>
+      <td>2</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
+    </tr>
+  </tbody>
+</table>
+
+{% endblock %}
