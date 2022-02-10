@@ -1,9 +1,10 @@
-
-Enter Vitsual Environment
+Enter Virtual Environment
 $ . venv/bin/activate
 
 Run The Application
 $ export FLASK_APP=flaskr
+
+For Local Development
 $ export FLASK_ENV=development
 $ flask run --port xxxx
 

@@ -1,6 +1,5 @@
-from flask import (
-    Blueprint, flash, g, redirect, render_template, url_for
-)
+from flask import(
+    Blueprint, flash, g, redirect, render_template, url_for)
 from flask import request
 from werkzeug.exceptions import abort   #TODO Delete?
 from flaskr.db import get_db            #TODO Delete?
