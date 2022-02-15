@@ -20,12 +20,6 @@ gunicorn -w 4 -b 0.0.0.0:30995 -D 'flaskr:create_app()'
 ps ax | grep gunicorn
 
 
-app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
-app.config['MYSQL_USER'] = 'cs340_bakera5'
-app.config['MYSQL_PASSWORD'] = '2817'
-app.config['MYSQL_DB'] = 'cs340_bakera5'
-app.config['MYSQL_CURSORCLASS'] = "DictCursor"
-
 TODO --
 First lets get bee fully working with CRUD and the html/css to go along with init
 Once bee is finished, we will have a working template that we can trasnfer over to others
@@ -33,12 +27,99 @@ Once bee is finished, we will have a working template that we can trasnfer over 
 Bee -
 
     bee.py
-        Create - Make sure null arguements arent applicable 
-        Update - Needs to be implemented in full
+        Create
+            Make sure that null values can not be implemented with the exception of bee type
+        
+        Search
+            Zero implementation
+        
+        Misc
+            Task_bee deletion (?)
 
     bee.html 
         - Search bar needs full implementation
-        - 
     
     bee general
         - m:m crud operations w/ task (though, task needs full implementation b4 hand)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+########## ##########  ##########  ##########  ##########
+
+##########  ##########  ##########  ##########
+
+##########  ##########  ##########
+
+##########  ##########
+ 
+##########
+
+
+
+
+
+##############################################################################################
+app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
+app.config['MYSQL_USER'] = 'cs340_bakera5'
+app.config['MYSQL_PASSWORD'] = '2817'
+app.config['MYSQL_DB'] = 'cs340_bakera5'
+app.config['MYSQL_CURSORCLASS'] = "DictCursor"
+###############################################################################################

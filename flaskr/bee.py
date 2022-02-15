@@ -32,7 +32,7 @@ def create():
         data = (bee_type, dob, bee_name)
         execute_query(db_connection, query, data)
 
-        return render_template('bee/createBee.html')
+        return redirect(url_for('bee.index'))
 
 def get_bee(bee_id, check_author=True):
 
@@ -65,17 +65,15 @@ def update(bee_id):
 
         if error is not None:
             flash(error)
-        else:
-            db = get_db()
-            db.execute(
-                'UPDATE post SET title = ?, body = ?'
-                ' WHERE id = ?',
-                (title, body, bee_id)
-            )
-            db.commit()
-            return redirect(url_for('blog.index'))
 
-    return render_template('blog/update.html', post=post)
+        else:
+            db_connection = connect_to_database()
+            query = 'UPDATE Bees SET bee_type = %s, dob = %s, bee_name = %s WHERE bee_id = %s;'
+            data = (bee_type, dob, bee_name, bee_id)
+            execute_query(db_connection, query, data)
+            return redirect(url_for('bee.index'))
+
+    return render_template('bee/updateBee.html', bee=bee)
 
 @bp.route('/<int:bee_id>/deleteBee', methods=('POST',))
 def delete(bee_id):
