@@ -11,7 +11,6 @@ bp = Blueprint('bee', __name__)
 
 @bp.route('/bee')
 def index():
-    print("Hello")
     db_connection = connect_to_database()
     query = 'SELECT bee_id, bee_type, dob, bee_name FROM Bees ORDER BY bee_id DESC;'
     result = execute_query(db_connection, query).fetchall();
@@ -34,5 +33,56 @@ def create():
         execute_query(db_connection, query, data)
 
         return render_template('bee/createBee.html')
+
+def get_bee(bee_id, check_author=True):
+
+    db_connection = connect_to_database()
+    query = 'SELECT bee_id, bee_type, dob, bee_name FROM Bees WHERE bee_id = {};'.format(bee_id)
+    bee = execute_query(db_connection, query).fetchone();
+    if bee is None:
+        abort(404, f"Bee id {bee_id} doesn't exist.")
+
+    return bee
+
+@bp.route('/<int:bee_id>/updateBee', methods=('GET', 'POST'))
+def update(bee_id):
+    bee = get_bee(bee_id)
+
+    if request.method == 'POST':
+        bee_type = request.form['bee_type']
+        dob = request.form['dob']
+        bee_name = request.form['bee_name']
+        error = None
+
+        if not bee_type:
+            error = 'bee_type is required'
+        
+        if not dob:
+            error += ' dob is required'
+
+        if not bee_name:
+            error += ' bee_name is required'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE post SET title = ?, body = ?'
+                ' WHERE id = ?',
+                (title, body, bee_id)
+            )
+            db.commit()
+            return redirect(url_for('blog.index'))
+
+    return render_template('blog/update.html', post=post)
+
+@bp.route('/<int:bee_id>/deleteBee', methods=('POST',))
+def delete(bee_id):
+    get_bee(bee_id)
+    db = connect_to_database()
+    query = 'DELETE FROM Bees WHERE bee_id = {}'.format(bee_id)
+    execute_query(db, query)
+    return redirect(url_for('bee.index'))
 
 

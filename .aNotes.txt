@@ -27,4 +27,18 @@ app.config['MYSQL_DB'] = 'cs340_bakera5'
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 TODO --
+First lets get bee fully working with CRUD and the html/css to go along with init
+Once bee is finished, we will have a working template that we can trasnfer over to others
 
+Bee -
+
+    bee.py
+        Create - Make sure null arguements arent applicable 
+        Update - Needs to be implemented in full
+
+    bee.html 
+        - Search bar needs full implementation
+        - 
+    
+    bee general
+        - m:m crud operations w/ task (though, task needs full implementation b4 hand)

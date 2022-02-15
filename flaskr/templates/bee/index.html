@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block content %}
-<p>DB is connected, create works -- update and delete are non-functional</p>
+<p>DB is connected, CRD works -- U is non functional</p>
+<p>Search is non-functional</p>
+<div class="topnav">
+  <input type="text" placeholder="Search a bee!">
+</div>
 
 <table>
   <thead>
@@ -25,7 +29,12 @@
         <td>{{ r[1] }}</td>
         <td>{{ r[2] }}</td>
         <td>{{ r[3] }}</td>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
+        <td style="text-align:center">
+          <a class="action" href="{{ url_for('bee.update', bee_id=r.0) }}">Update Bee</a>
+          <form action="{{ url_for('bee.delete', bee_id=r.0) }}" method="post">
+            <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+          </form>
+        </td>
       </tr>
     </tbody>
   {% endfor %}

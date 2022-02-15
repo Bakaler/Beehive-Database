@@ -12,7 +12,3 @@ htmlcov/
 dist/
 build/
 *.egg-info/
-
-
-db_credentials.py
-.aNotes.txt
