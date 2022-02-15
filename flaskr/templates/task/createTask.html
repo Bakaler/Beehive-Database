@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <form method="task">
+  <form id= "addtask" action="/createTask" method="post">
     <label for="bee_type">Task type</label>
     <input name="task_type" value="{{ request.form['task_type'] }}" required>
     
@@ -14,6 +14,13 @@
 
     <label for="assignment_length">Assignment Length</label>
     <input name="assignment_length" value="{{ request.form['assignment_length'] }}" required>
+
+    <label for="Null">Bee from Hive</label>
+    <input name="Null" value="Drop down all bees from hive">
+
+    <label for="Null">Cell from Hive</label>
+    <input name="Null" value="Drop down all cells from hive">
+
 
     <input type="submit" value="Save">
   </form>

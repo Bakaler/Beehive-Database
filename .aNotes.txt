@@ -1,28 +1,33 @@
-Enter Virtual Environment
-$ . venv/bin/activate
-
-Run The Application
-$ export FLASK_APP=flaskr
-
-For Local Development
-$ export FLASK_ENV=development
-$ flask run --port xxxx
-
-(Do this before running if you update the db)
-Initialize the Database File
-$ flask init-db
+**********************************************
+###############################################################################
+0 - Index
+###############################################################################
+**********************************************
 
 
-Exit venv
-$ deactivate
-
-gunicorn -w 4 -b 0.0.0.0:30995 -D 'flaskr:create_app()'
-ps ax | grep gunicorn
+1. TODO
+2. Entering virtual env and running program
+3. Database Credentials
 
 
-TODO --
-First lets get bee fully working with CRUD and the html/css to go along with init
-Once bee is finished, we will have a working template that we can trasnfer over to others
+**********************************************
+###############################################################################
+1 - TODO
+###############################################################################
+**********************************************
+
+-Bee
+-Search
+-Task
+
+Notes
+    Bee is almost operational and totally functional!
+    I have began working on the task functionality which is going to be using a lot of the same
+        operations as Bee, however, it is going to be where our search funcationality is implemented 
+        alongside as displaying a multi-joined tabel that includes
+            task
+            task_cells
+            task_bees
 
 Bee -
 
@@ -43,79 +48,84 @@ Bee -
         - m:m crud operations w/ task (though, task needs full implementation b4 hand)
 
 
+Search
 
+    Im thinking that our search feature should be implemented with task_bee and task_cell into one unified table
+    This search can either search for 
+        bee, cell, or task
+    With 'bee' for example, our search will return a table with all task_bee, and task_cell, that corresond with that bee/task 
 
+        Bee -> McFly
+        Task    Cell
+        001     001
+        002     001
+        003     012
+        004     110
+        005     119
+        006     832
+        007     151
 
+    This means we need something that selects from bee_task, and then joins a task_cell table where t_b.task_id = t_c.task_id
 
 
+Task
 
+    task.py
+        Create
+            This needs to simultatniously create
+                - Task entity
+                - task_bees entity
+                - task_cells entity
 
+        Delete
+            This needs to simultatniously delete
+                - Task entity
+                - task_bees entity
+                - task_cells entity
 
+        
+        Search
+            Zero implementation
+        
 
+    task.html 
+        - Search bar needs full implementation
+    
+    task general
+        - m:m crud operations 
 
 
+**********************************************
+###############################################################################
+2 - Entering virtual env and running program
+###############################################################################
+**********************************************
 
+Enter Virtual Environment
+$ . venv/bin/activate
 
+Run The Application
+$ export FLASK_APP=flaskr
 
+For Local Development
+$ export FLASK_ENV=development
+$ flask run --port xxxx
 
 
+Exit venv
+$ deactivate
 
+gunicorn -w 4 -b 0.0.0.0:30995 -D 'flaskr:create_app()'
+ps ax | grep gunicorn
 
 
+**********************************************
+###############################################################################
+3 - Databse Credentials
+###############################################################################
+**********************************************
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-########## ##########  ##########  ##########  ##########
-
-##########  ##########  ##########  ##########
-
-##########  ##########  ##########
-
-##########  ##########
- 
-##########
-
-
-
-
-
+###############################
 ##############################################################################################
 app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
 app.config['MYSQL_USER'] = 'cs340_bakera5'
@@ -123,3 +133,4 @@ app.config['MYSQL_PASSWORD'] = '2817'
 app.config['MYSQL_DB'] = 'cs340_bakera5'
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 ###############################################################################################
+###############################

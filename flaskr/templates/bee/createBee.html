@@ -7,8 +7,8 @@
 {% block content %}
   <form id="addbee" action="/createBee" method="post">
     Bee Type: <input type="number" name="bee_type"><br>
-    Date of Birth: <input type="date" name="dob"><br>
-    Bee Name: <input type="text" name="bee_name"><br>
+    Date of Birth: <input type="date" name="dob" required><br>
+    Bee Name: <input type="text" name="bee_name" required><br>
     <input type="submit" value="Submit">
   </form>
 <br/>

@@ -6,41 +6,44 @@
 {% endblock %}
 
 {% block content %}
-<p>DB is not connected, create, update, and delete non-functional</p>
-<p>This table is static and will be replaced with a dynamic table </p>
+<p>DB is connected, CRD works -- U is non functional</p>
+<p>Search is non-functional</p>
 
 <table>
   <thead>
     <tr>
-      <th> task_id</th>
-      <th> task_Type</th>
-      <th> description</th>
-      <th> assignment_ length</th>
-      <th> assigned bee</th>
-      <th> assigned cell</th>
-      <th> update // delete</th>
+      <th> Task Id</th>
+      <th> Task Type</th>
+      <th> Description</th>
+      <th> Assignment Length</th>
+      <th> Assigned Bee</th>
+      <th> Assigned Cell</th>
+      <th> Update</th>
+      <th> Delete</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>001</td>
-      <td>Clean</td>
-      <td>Clean the HoneyComb</td>
-      <td>1</td>
-      <td>001</td>
-      <td>5</td>
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
-    </tr>
-    <tr>
-      <td>002</td>
-      <td>Guard</td>
-      <td>Protect Entrance</td>
-      <td>2</td>
-      <td>003</td>
-      <td>7</td>
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
-    </tr>
-  </tbody>
+  {% for r in rows %}
+    <tbody>
+      <tr>
+        <td>{{ r.0 }}</td>
+        <td>{{ r[1] }}</td>
+        <td>{{ r[2] }}</td>
+        <td>{{ r[3] }}</td>
+        <td> Fill Later </td>
+        <td> Fill Later</td>
+        <td>
+          <form action="{{ url_for('task.update', task_id=r.0) }}" method="get">
+            <input type="submit" value="Update">
+          </form>
+        </td>
+        <td>    
+          <form action="{{ url_for('task.delete', task_id=r.0) }}" method="post">
+            <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  {% endfor %}
 </table>
 
 {% endblock %}

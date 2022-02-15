@@ -6,7 +6,7 @@
 
 {% block content %}
   <form id="updateBee" action="/{{bee[0]}}/updateBee" method="POST">
-    Bee Type: <input type="number" name="bee_type" value = "{{bee[1]}}" required><br>
+    Bee Type: <input type="number" name="bee_type" value = "{{bee[1]}}"><br>
     Date of Birth: <input type="date" name="dob" value = "{{bee[2]}}" required><br>
     Bee Name: <input type="text" name="bee_name" value = "{{bee[3]}}" required><br>
     <input type="submit" value="Update">

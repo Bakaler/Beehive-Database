@@ -9,7 +9,7 @@
 <p>DB is connected, CRD works -- U is non functional</p>
 <p>Search is non-functional</p>
 <div class="topnav">
-  <input type="text" placeholder="Search a bee!">
+  <input type="text" placeholder="To be moved">
 </div>
 
 <table>
@@ -27,7 +27,12 @@
     <tbody>
       <tr>
         <td>{{ r.0 }}</td>
-        <td>{{ r[1] }}</td>
+        {% if r[1] != 0 %}
+          <td>{{ r[1] }}</td>
+        {% else %}
+          <td>NULL</td>
+        {% endif %}
+        </td>
         <td>{{ r[2] }}</td>
         <td>{{ r[3] }}</td>
         <td>

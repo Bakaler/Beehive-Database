@@ -40,7 +40,7 @@ CREATE TABLE Tasks (
   task_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   task_type VARCHAR(255) NOT NULL,
   description VARCHAR(1000) NOT NULL,
-  assignment_length INTEGER
+  assignment_length INTEGER,
 );
 
 CREATE TABLE Bee_Types (
