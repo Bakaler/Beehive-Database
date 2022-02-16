@@ -23,7 +23,9 @@ def index():
 def create():
     db_connection = connect_to_database()
     if request.method == 'GET':
-        return render_template('bee/createBee.html')
+        query = 'Select type_id, type_name FROM Bee_Types ORDER BY type_id ASC;'
+        types = execute_query(db_connection, query).fetchall();
+        return render_template('bee/createBee.html', types=types)
     elif request.method == 'POST':
         bee_type = request.form['bee_type']
         dob = request.form['dob']
