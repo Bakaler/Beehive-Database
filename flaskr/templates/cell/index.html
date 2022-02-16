@@ -6,34 +6,43 @@
 {% endblock %}
 
 {% block content %}
-<p>DB is not connected, create, update, and delete non-functional</p>
-<p>This table is static and will be replaced with a dynamic table </p>
+<p>DB is connected, CRD works -- U is non functional</p>
 
 <table>
   <thead>
     <tr>
-      <th> cell_id</th>
-      <th> cell_Type</th>
-      <th> location</th>
-      <th> size</th>
-      <th> update // delete</th>
+      <th> Cell Id</th>
+      <th> Cell Type</th>
+      <th> Location</th>
+      <th> Size</th>
+      <th> Update</th>
+      <th> Delete</th>
     </tr>
   </thead>
+  {% for r in rows %}
   <tbody>
     <tr>
-      <td>001</td>
-      <td>Honey Comb</td>
-      <td>Cluster_01</td>
-      <td>5</td>
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
-    </tr>
-    <tr>
-      <td>002</td>
-      <td>Lair</td>
-      <td>Cluster_02</td>
-      <td>5</td>
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x  </td>
+      <td>{{ r.0 }}</td>
+      {% if r[1] != 0 %}
+        <td>{{ r[1] }}</td>
+      {% else %}
+        <td>NULL</td>
+      {% endif %}
+      </td>
+      <td>{{ r[2] }}</td>
+      <td>{{ r[3] }}</td>
+      <td>
+        <form action="{{ url_for('cell.update', cell_id=r.0) }}" method="get">
+          <input type="submit" value="Update">
+        </form>
+      </td>
+      <td>
+        <form action="{{ url_for('cell.delete', cell_id=r.0) }}" method="post">
+          <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+        </form>
+      </td>
     </tr>
   </tbody>
+  {% endfor %}
 </table>
 {% endblock %}
