@@ -5,16 +5,11 @@
 {% endblock %}
 
 {% block content %}
-  <form method="cell">
-    <label for="cell_type">cell_type</label>
-    <input name="cell_type" value="{{ request.form['cell_type'] }}" required>
-    
-    <label for="location">Location</label>
-    <input name="location" value="{{ request.form['location'] }}" required>
-
-    <label for="size">size</label>
-    <input name="size" value="{{ request.form['size'] }}" required>
-
+  <form id="addcell" action="/createCell" method="post">
+    Cell Type: <input type="text" name="cell_type" required><br>
+    Location: <input type="text" name="location" required><br>
+    Size: <input type="number" name="size" required><br>
     <input type="submit" value="Save">
   </form>
+<br/>
 {% endblock %}
