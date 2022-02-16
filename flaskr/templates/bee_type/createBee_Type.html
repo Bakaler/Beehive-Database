@@ -5,16 +5,11 @@
 {% endblock %}
 
 {% block content %}
-  <form method="bee_type">
-    <label for="type_name">Type Name</label>
-    <input name="type_name" value="{{ request.form['type_name'] }}" required>
-    
-    <label for="age">Age Range</label>
-    <input name="age" value="{{ request.form['age'] }}" required>
-
-    <label for="description">Description</label>
-    <input name="description" value="{{ request.form['description'] }}" required>
-
-    <input type="submit" value="Save">
+  <form id=""addbee_type" action="/createBee_Type" method="POST">
+    Type Name: <input type="text" name="type_name" required><br>
+    Age: <input type="number" name="age" required><br>
+    Description: <input type="text" name="description" required><br>
+    <input type="submit" value="Submit">
   </form>
+<br/>
 {% endblock %}
