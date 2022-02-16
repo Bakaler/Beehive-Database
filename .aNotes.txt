@@ -4,20 +4,48 @@
 ###############################################################################
 **********************************************
 
-
-1. TODO
-2. Entering virtual env and running program
-3. Database Credentials
-
+1. General Notes
+2. TODO
+3. Entering virtual env and running program
+4. Database Credentials
 
 **********************************************
 ###############################################################################
-1 - TODO
+1 - General Notes
+###############################################################################
+**********************************************
+
+- MYSQL 
+    - All the tables have been created. Unsure if any changes will have to be made as of yet though
+    - Currently bee type on delete = set to null
+    - other on deletes set to cascade (deletion continution)
+
+- Search 
+    - Have no idea where we want to implement this yet, maybe create a page for search that allows
+        users to search for a bee, a task, or a cell and returns a table of said type and all others 
+            This search can either search for 
+        bee, cell, or task
+    With 'bee' for example, our search will return a table with all task_bee, and task_cell, that corresond with that bee/task 
+
+        Bee -> McFly
+        Task    Cell
+        001     001
+        002     001
+        003     012
+        004     110
+        005     119
+        006     832
+        007     151
+
+    This means we need something that selects from bee_task, and then joins a task_cell table where t_b.task_id = t_c.task_id
+
+**********************************************
+###############################################################################
+2 - TODO
 ###############################################################################
 **********************************************
 
 -Bee
--Search
 -Task
 
 Notes
@@ -46,26 +74,6 @@ Bee -
     
     bee general
         - m:m crud operations w/ task (though, task needs full implementation b4 hand)
-
-
-Search
-
-    Im thinking that our search feature should be implemented with task_bee and task_cell into one unified table
-    This search can either search for 
-        bee, cell, or task
-    With 'bee' for example, our search will return a table with all task_bee, and task_cell, that corresond with that bee/task 
-
-        Bee -> McFly
-        Task    Cell
-        001     001
-        002     001
-        003     012
-        004     110
-        005     119
-        006     832
-        007     151
-
-    This means we need something that selects from bee_task, and then joins a task_cell table where t_b.task_id = t_c.task_id
 
 
 Task
@@ -97,7 +105,7 @@ Task
 
 **********************************************
 ###############################################################################
-2 - Entering virtual env and running program
+3 - Entering virtual env and running program
 ###############################################################################
 **********************************************
 
@@ -121,7 +129,7 @@ ps ax | grep gunicorn
 
 **********************************************
 ###############################################################################
-3 - Databse Credentials
+4 - Databse Credentials
 ###############################################################################
 **********************************************
 

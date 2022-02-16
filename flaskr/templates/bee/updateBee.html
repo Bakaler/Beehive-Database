@@ -6,7 +6,12 @@
 
 {% block content %}
   <form id="updateBee" action="/{{bee[0]}}/updateBee" method="POST">
-    Bee Type: <input type="number" name="bee_type" value = "{{bee[1]}}"><br>
+    Bee Type: <select name="bee_type">
+      {% for type in types %}
+        <option value="{{type[0]}}"> {{ type[1] }}</option>
+      {% endfor %}
+    </select>
+    <br>
     Date of Birth: <input type="date" name="dob" value = "{{bee[2]}}" required><br>
     Bee Name: <input type="text" name="bee_name" value = "{{bee[3]}}" required><br>
     <input type="submit" value="Update">

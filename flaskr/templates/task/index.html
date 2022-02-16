@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block content %}
-<p>Task is a special table that represents a plethora of information within the database</p>
-<p>Within this table, we have included not only the task entity, but included the Bee_Tasks and Task_Cells tables</p>
+
+<br>
 
 <table>
   <thead>
@@ -16,9 +16,8 @@
       <th> Task Type</th>
       <th> Description</th>
       <th> Assignment Length</th>
-      <th> Assigned Bee</th>
-      <th> Assigned Cell</th>
-      <th> Update or Delete</th>
+      <th> Update </th>
+      <th> Delete </th>
     </tr>
   </thead>
   {% for r in rows %}
@@ -28,11 +27,14 @@
         <td>{{ r[1] }}</td>
         <td>{{ r[2] }}</td>
         <td>{{ r[3] }}</td>
-        <td> Fill Later </td>
-        <td> Fill Later</td>
-        <td>
+        <td> 
           <form action="{{ url_for('task.update', task_id=r.0) }}" method="get">
-            <input type="submit" value="Update or Delete">
+            <input type="submit" value="Update">
+          </form>
+        </td>
+        <td>
+          <form action="{{ url_for('task.delete', task_id=r.0) }}" method="post">
+            <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
           </form>
         </td>
       </tr>
@@ -41,3 +43,4 @@
 </table>
 
 {% endblock %}
+
