@@ -34,5 +34,23 @@ def create():
         query = 'INSERT INTO Task_Cells (task_id, cell_id) VALUES (%s, %s)'
         data = (task_id, cell_id)
         execute_query(db_connection, query, data)
-
         return redirect(url_for('task_cell.index'))
+
+
+def get_task_cell(task_id, cell_id, check_author=True):
+    db_connection = connect_to_database()
+    query = 'SELECT task_id, cell_id FROM Task_Cells WHERE task_id = {} AND cell_id = {}'.format(task_id, cell_id)
+    task_cell = execute_query(db_connection, query).fetchone();
+    if task_cell is None:
+        abort(404, f"Task_Cell with Task ID {task_id} and Cell ID {cell_id} doesn't exist.")
+
+    return task_cell
+
+
+@bp.route('/<int:task_id>/<int:cell_id>/deleteTask_Cell', methods=('POST',))
+def delete(task_id, cell_id):
+    get_task_cell(task_id, cell_id)
+    db = connect_to_database()
+    query = 'DELETE FROM Task_Cells WHERE task_id = {} AND cell_id = {}'.format(task_id, cell_id)
+    execute_query(db, query)
+    return redirect(url_for('task_cell.index'))

@@ -34,6 +34,24 @@ def create():
         query = 'INSERT INTO Bee_Tasks (bee_id, task_id) VALUES (%s, %s)'
         data = (bee_id, task_id)
         execute_query(db_connection, query, data)
-
         return redirect(url_for('bee_task.index'))
+
+
+def get_bee_task(bee_id, task_id, check_author=True):
+    db_connection = connect_to_database()
+    query = 'SELECT bee_id, task_id FROM Bee_Tasks WHERE bee_id = {} AND task_id = {};'.format(bee_id, task_id)
+    bee_task = execute_query(db_connection, query).fetchone();
+    if bee_task is None:
+        abort(404, f"Bee_Task with Bee ID {bee_id} and Task ID {task_id} doesn't exist.")
+
+    return bee_task
+
+
+@bp.route('/<int:bee_id>/<int:task_id>/deleteBee_Task', methods=('POST',))
+def delete(bee_id, task_id):
+    get_bee_task(bee_id, task_id)
+    db = connect_to_database()
+    query = 'DELETE FROM Bee_Tasks WHERE bee_id = {} AND task_id = {}'.format(bee_id, task_id)
+    execute_query(db, query)
+    return redirect(url_for('bee_task.index'))
 

@@ -6,14 +6,13 @@
 {% endblock %}
 
 {% block content %}
-<p>DB connected, Update/Delete not functional</p>
+<p>DB is connected.</p>
 
 <table>
   <thead>
     <tr>
       <th> Bee ID</th>
       <th> Task ID</th>
-      <th> Update</th>
       <th> Delete</th>
     </tr>
   </thead>
@@ -23,10 +22,9 @@
       <td>{{ r[0] }}</td>
       <td>{{ r[1] }}</td>
       <td>
-        Update
-      </td>
-      <td>
-        Delete
+        <form action="{{ url_for('bee_task.delete', bee_id=r.0, task_id=r.1) }}" method="POST">
+          <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+        </form>
       </td>
     </tr>
   </tbody>
