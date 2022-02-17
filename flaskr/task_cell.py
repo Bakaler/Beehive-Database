@@ -23,7 +23,11 @@ def index():
 def create():
     db_connection = connect_to_database()
     if request.method == 'GET':
-        return render_template('/task_cell/createTask_Cell.html')
+        query = 'SELECT task_id, task_type FROM Tasks ORDER BY task_id ASC;'
+        tasks = execute_query(db_connection, query).fetchall();
+        query2 = 'SELECT cell_id, cell_type FROM Cells ORDER BY cell_id ASC;'
+        cells = execute_query(db_connection, query2).fetchall();
+        return render_template('/task_cell/createTask_Cell.html', tasks=tasks, cells=cells)
     elif request.method == 'POST':
         task_id = request.form['task_id']
         cell_id = request.form['cell_id']

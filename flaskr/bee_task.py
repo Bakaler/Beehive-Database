@@ -23,7 +23,11 @@ def index():
 def create():
     db_connection = connect_to_database()
     if request.method == 'GET':
-        return render_template('/bee_task/createBee_Task.html')
+        query = 'SELECT bee_id, bee_name FROM Bees ORDER BY bee_id ASC;'
+        bees = execute_query(db_connection, query).fetchall();
+        query2 = 'SELECT task_id, task_type FROM Tasks ORDER BY task_id ASC;'
+        tasks = execute_query(db_connection, query2).fetchall();
+        return render_template('/bee_task/createBee_Task.html', bees=bees, tasks=tasks)
     elif request.method == 'POST':
         bee_id = request.form['bee_id']
         task_id = request.form['task_id']

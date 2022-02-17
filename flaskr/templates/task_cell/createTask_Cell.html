@@ -6,8 +6,18 @@
 
 {% block content %}
   <form id="addtask_cell" action="/createTask_Cell" method="post">
-    Task Id: <input type="number" name="task_id" required><br>
-    Cell Id: <input type="number" name="cell_id" required><br>
+    Task ID: <select name="task_id">
+      {% for task in tasks %}
+        <option value="{{task[0]}}"> {{ task[0] }} - {{ task[1] }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    Cell ID: <select name="cell_id">
+      {% for cell in cells %}
+        <option value="{{cell[0]}}"> {{ cell[0] }} - {{ cell[1] }}</option>
+      {% endfor %}
+    </select>
+    <br>
     <input type="submit" value="Submit">
   </form>
 <br/>

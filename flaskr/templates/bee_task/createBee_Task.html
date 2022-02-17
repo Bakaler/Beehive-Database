@@ -6,8 +6,18 @@
 
 {% block content %}
   <form id="addbee_task" action="/createBee_Task" method="post">
-    Bee Id: <input type="number" name="bee_id" required><br>
-    Task Id: <input type="number" name="task_id" required><br>
+    Bee ID: <select name="bee_id">
+      {% for bee in bees %}
+        <option value="{{bee[0]}}"> {{ bee[0] }} - {{ bee[1] }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    Task ID: <select name="task_id">
+      {% for task in tasks %}
+        <option value="{{task[0]}}"> {{ task[0] }} - {{ task[1] }}</option>
+      {% endfor %}
+    </select>
+    <br>
     <input type="submit" value="Submit">
   </form>
 <br/>
