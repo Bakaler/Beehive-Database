@@ -42,7 +42,7 @@ def get_bee(bee_id, check_author=True):
     query = 'SELECT bee_id, bee_type, dob, bee_name FROM Bees WHERE bee_id = {};'.format(bee_id)
     bee = execute_query(db_connection, query).fetchone();
     if bee is None:
-        abort(404, f"Bee id {bee_id} doesn't exist.")
+        abort(404, f"Bee ID {bee_id} doesn't exist.")
 
     return bee
 

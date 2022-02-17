@@ -40,7 +40,7 @@ def get_task(task_id):
     query = 'SELECT task_id, task_type, description, assignment_length FROM Tasks WHERE task_id = {};'.format(task_id)
     task = execute_query(db_connection, query).fetchone();
     if task is None:
-        abort(404, f"task_id id {task_id} doesn't exist.")
+        abort(404, f"Task ID {task_id} doesn't exist.")
 
     return task
 

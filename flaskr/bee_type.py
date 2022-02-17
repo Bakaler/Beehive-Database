@@ -41,7 +41,7 @@ def get_bee_type(type_id, check_author=True):
     query = 'SELECT type_id, type_name, age, description FROM Bee_Types WHERE type_id = {};'.format(type_id)
     bee_type = execute_query(db_connection, query).fetchone();
     if bee_type is None:
-        abort(404, f"Bee Type id {type_id} doesn't exist.")
+        abort(404, f"Bee Type ID {type_id} doesn't exist.")
 
     return bee_type
 

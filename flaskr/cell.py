@@ -40,7 +40,7 @@ def get_cell(cell_id):
     query = 'SELECT cell_id, cell_type, location, size FROM Cells ORDER BY cell_id DESC;'
     cell = execute_query(db_connection, query).fetchone();
     if cell is None:
-        abort(404, f"Cell id {cell_id} doesn't exist.")
+        abort(404, f"Cell ID {cell_id} doesn't exist.")
 
     return cell
 
