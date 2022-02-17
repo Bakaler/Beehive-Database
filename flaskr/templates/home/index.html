@@ -6,29 +6,33 @@
 
 {% block content %}
 <h1> Bees </h1>
-<a class = "select" href="{{ url_for('bee.index') }}">Beelist</a>
+<a class = "select" href="{{ url_for('bee.index') }}">Bee List</a>
 <a>&emsp;</a>
-<a class = "select" href="{{ url_for('bee.create') }}">Bee create</a>
+<a class = "select" href="{{ url_for('bee.create') }}">Create Bee</a>
 
 <h1> Cells </h1>
-<a class = "select" href="{{ url_for('cell.index') }}">Cell list</a>
+<a class = "select" href="{{ url_for('cell.index') }}">Cell List</a>
 <a>&emsp;</a>
-<a class = "select" href="{{ url_for('cell.create') }}">Cell create</a>
+<a class = "select" href="{{ url_for('cell.create') }}">Create Cell</a>
 
 <h1> Tasks </h1>
-<a class = "select" href="{{ url_for('task.index') }}">Task list</a>
+<a class = "select" href="{{ url_for('task.index') }}">Task List</a>
 <a>&emsp;</a>
-<a class = "select" href="{{ url_for('task.create') }}">Task create</a>
+<a class = "select" href="{{ url_for('task.create') }}">Create Task</a>
 
 <h1> Bee Types</h1>
-<a class = "select" href="{{ url_for('bee_type.index') }}">Bee Type list</a>
+<a class = "select" href="{{ url_for('bee_type.index') }}">Bee Type List</a>
 <a>&emsp;</a>
-<a class = "select" href="{{ url_for('bee_type.create') }}">Bee Type create</a>
+<a class = "select" href="{{ url_for('bee_type.create') }}">Create Bee Type</a>
 
-<h1> Bee_Task </h1>
-<p> Imma be a link someday!</p>
+<h1> Bee Tasks</h1>
+<a class = "select" href="{{ url_for('bee_task.index') }}">Bee Task List</a>
+<a>&emsp;</a>
+<a class = "select" href="{{ url_for('bee_task.create') }}">Create Bee Task</a>
 
-<h1> Task_Cell </h1>
-<p> Im also going to be a link!</p>
+<h1> Task Cells</h1>
+<a class = "select" href="{{ url_for('task_cell.index') }}">Task Cell List</a>
+<a>&emsp;</a>
+<a class = "select" href="{{ url_for('task_cell.create') }}">Create Task Cell</a>
 
 {% endblock %}

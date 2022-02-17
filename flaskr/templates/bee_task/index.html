@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Bee Tasks{% endblock %}</h1>
+  <a class = "select" href="{{ url_for('bee_task.create') }}">Create Bee Task</a>
+{% endblock %}
+
+{% block content %}
+<p>Not connected</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> Bee Id</th>
+      <th> Task Id</th>
+      <th> Update</th>
+      <th> Delete</th>
+    </tr>
+  </thead>
+  {% for r in rows %}
+  <tbody>
+    <tr>
+      <td>{{ r[0] }}</td>
+      <td>{{ r[1] }}</td>
+      <td>
+        Update
+      </td>
+      <td>
+        Delete
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endblock %}

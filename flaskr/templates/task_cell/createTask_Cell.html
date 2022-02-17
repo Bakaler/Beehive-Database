@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Task Cell{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form id="addtask_cell" action="/createTask_Cell" method="post">
+    Task Id: <input type="number" name="task_id" required><br>
+    Cell Id: <input type="number" name="cell_id" required><br>
+    <input type="submit" value="Submit">
+  </form>
+<br/>
+{% endblock %}

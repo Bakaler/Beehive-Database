@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Task Cells{% endblock %}</h1>
+  <a class = "select" href="{{ url_for('task_cell.create') }}">Create Task Cell</a>
+{% endblock %}
+
+{% block content %}
+<p>Not connected</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> Task Id</th>
+      <th> Cell Id</th>
+      <th> Update</th>
+      <th> Delete</th>
+    </tr>
+  </thead>
+  {% for r in rows %}
+  <tbody>
+    <tr>
+      <td>{{ r[0] }}</td>
+      <td>{{ r[1] }}</td>
+      <td>
+        Update
+      </td>
+      <td>
+        Delete
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endblock %}

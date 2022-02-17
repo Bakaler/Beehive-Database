@@ -70,6 +70,14 @@ def create_app(test_config=None):
     app.register_blueprint(bee_type.bp)
     app.add_url_rule('/bee_type', endpoint='index')
 
+    from . import bee_task
+    app.register_blueprint(bee_task.bp)
+    app.add_url_rule('/bee_type', endpoint='index')
+
+    from . import task_cell
+    app.register_blueprint(task_cell.bp)
+    app.add_url_rule('/task_cell', endpoint='index')
+
     from . import home
     app.register_blueprint(home.bp)
     

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Bee Task{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form id="addbee_task" action="/createBee_Task" method="post">
+    Bee Id: <input type="number" name="bee_id" required><br>
+    Task Id: <input type="number" name="task_id" required><br>
+    <input type="submit" value="Submit">
+  </form>
+<br/>
+{% endblock %}
