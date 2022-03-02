@@ -12,9 +12,13 @@ bp = Blueprint('task_cell', __name__)
 @bp.route('/task_cell')
 def index():
     db_connection = connect_to_database()
-    query = 'SELECT task_id, cell_id FROM Task_Cells ORDER BY task_id DESC;'
+
+    query = ("SELECT tc.task_id, t.task_type, tc.cell_id, c.cell_type "
+            "FROM Task_Cells as tc "
+            "inner join Tasks as t on t.task_id = tc.task_id "
+            "inner join Cells as c on c.cell_id = tc.cell_id "
+            "ORDER BY task_id DESC;")
     result = execute_query(db_connection, query).fetchall();
-    print(result)
 
     return render_template('task_cell/index.html', rows=result)
 
