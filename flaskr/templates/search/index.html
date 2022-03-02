@@ -1,70 +1,54 @@
+<script>
+  var entityAttributes = {
+    "Bees": ["bee_id", "bee_type"],
+    "Cells": ["cell_id"],
+    "Tasks": ["task_id"],
+    "Bee_Types": ["type_id"]
+  }
+  window.onload = function() {
+    var entitySel = document.getElementById("entity");
+    var attributeSel = document.getElementById("attribute");
+    for (var x in entityAttributes) {
+      entitySel.options[entitySel.options.length] = new Option(x);
+      console.log(entityAttributes[x])
+    }
+    entitySel.onchange = function() {
+      attributeSel.length = 1;
+      var y = entityAttributes[entitySel.value];
+      for (var i = 0; i < y.length; i++) {
+        attributeSel.options[attributeSel.options.length] = new Option(y[i]);
+      }
+    }
+  }
+</script>
+
 {% extends 'base.html' %}
 
 {% block header %}
   <h1>{% block title %}Search{% endblock %}</h1>
 {% endblock %}
 
+
 {% block content %}
-  <h2>Bees</h2>
+
   <div>
     <form action="{{ url_for('search.results') }}" method="GET">
-      <input type="hidden" name="entity" value="Bees">
-      <select name="attribute">
-        <option value="bee_id">Bee ID</option>
-        <option value="bee_type">Bee Type</option>
+      Entity:
+      <select name="entity" id="entity">
+        <option value="" selected="selected">Select entity</option>
       </select>
       <br>
+      Attribute:
+      <select name="attribute" id="attribute">
+        <option value="" selected="selected">Select attribute</option>
+      </select>
+      <br>
+      Value:
       <input type="text" name="search_term">
+      <br>
       <button action="submit" method="GET">Search</button>
     </form>
   </div>
-
-  <hr>
-
-  <h2>Cells</h2>
-  <div>
-    <form action="{{ url_for('search.results') }}" method="GET">
-      <input type="hidden" name="entity" value="Cells">
-      <select name="attribute">
-        <option value="cell_id">Cell ID</option>
-      </select>
-      <br>
-      <input type="text" name="search_term">
-      <button action="submit" method="GET">Search</button>
-    </form>
-  </div>
-
-  <hr>
-
-  <h2>Tasks</h2>
-  <div>
-    <form action="{{ url_for('search.results') }}" method="GET">
-      <input type="hidden" name="entity" value="Tasks">
-      <select name="attribute">
-        <option value="task_id">Task ID</option>
-      </select>
-      <br>
-      <input type="text" name="search_term">
-      <button action="submit" method="GET">Search</button>
-    </form>
-  </div>
-
-  <hr>
-
-  <h2>Bees Types</h2>
-  <div>
-    <form action="{{ url_for('search.results') }}" method="GET">
-      <input type="hidden" name="entity" value="Bee_Types">
-      <select name="attribute">
-        <option value="type_id">Bee Type ID</option>
-      </select>
-      <br>
-      <input type="text" name="search_term">
-      <button action="submit" method="GET">Search</button>
-    </form>
-  </div>
-
-  <hr>
 
 {% endblock %}
 
