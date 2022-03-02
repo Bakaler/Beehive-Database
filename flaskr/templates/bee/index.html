@@ -2,13 +2,11 @@
 
 {% block header %}
   <h1>{% block title %}Bees{% endblock %}</h1>
-    <a class = "select" href="{{ url_for('bee.create') }}">Create Bee</a>
+  <a class = "select" href="{{ url_for('bee.create') }}">Create Bee</a>
 {% endblock %}
 
 {% block content %}
-
-<p><input type="text" placeholder="Search a bee!"><button>Search</button></p>
-
+<br>
 
 <table>
   <thead>

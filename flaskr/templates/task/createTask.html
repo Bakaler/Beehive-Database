@@ -6,14 +6,11 @@
 
 {% block content %}
   <form id= "addtask" action="/createTask" method="post">
-    <label for="bee_type">Task type</label>
-    <input name="task_type" value="{{ request.form['task_type'] }}" required>
+    Task Type: <input name="task_type" value="{{ request.form['task_type'] }}" required>
     
-    <label for="description">Description</label>
-    <input name="description" value="{{ request.form['description'] }}" required>
+    Description: <input name="description" value="{{ request.form['description'] }}" required>
 
-    <label for="assignment_length">Assignment Length</label>
-    <input name="assignment_length" value="{{ request.form['assignment_length'] }}" required>
+    Assignment Length: <input name="assignment_length" value="{{ request.form['assignment_length'] }}" required>
 
     <input type="submit" value="Save">
   </form>

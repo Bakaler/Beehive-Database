@@ -78,6 +78,10 @@ def create_app(test_config=None):
     app.register_blueprint(task_cell.bp)
     app.add_url_rule('/task_cell', endpoint='index')
 
+    from . import search
+    app.register_blueprint(search.bp)
+    app.add_url_rule('/search', endpoint='index')
+
     from . import home
     app.register_blueprint(home.bp)
     
