@@ -16,16 +16,26 @@ def index():
 @bp.route('/results/', methods=('GET', 'POST'))
 def results():
     db_connection = connect_to_database()
+    ints = ['bee_type', 'size', 'assignment_length']
 
     entity = request.args.get('entity')
     attribute = request.args.get('attribute')
     search_term = request.args.get('search_term')
 
-    query = 'SELECT * FROM {} WHERE {}={}'.format(entity, attribute, search_term)
-    result = execute_query(db_connection, query)
+    column_query = 'DESCRIBE {}'.format(entity)
+    result2 = execute_query(db_connection, column_query)
 
-    query2 = 'DESCRIBE {}'.format(entity)
-    result2 = execute_query(db_connection, query2)
+    if search_term == 'None':
+        query = f"SELECT * FROM {entity} WHERE {attribute} IS NULL"
+    elif attribute[-2:] != 'id' and attribute not in ints:
+        query = f"SELECT * FROM {entity} WHERE {attribute}='{search_term}'" 
+    else:
+        if search_term.isnumeric():
+            query = 'SELECT * FROM {} WHERE {}={}'.format(entity, attribute, search_term)
+        else:
+            return render_template('search/results.html', rows=[], columns=result2)
+
+    result = execute_query(db_connection, query)
 
     return render_template('search/results.html', rows=result, columns=result2)
 

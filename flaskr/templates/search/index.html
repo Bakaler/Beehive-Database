@@ -1,9 +1,11 @@
 <script>
   var entityAttributes = {
-    "Bees": ["bee_id", "bee_type"],
-    "Cells": ["cell_id"],
-    "Tasks": ["task_id"],
-    "Bee_Types": ["type_id"]
+    "Bees": ["bee_id", "bee_type", "bee_name"],
+    "Cells": ["cell_id", "cell_type", "location", "size"],
+    "Tasks": ["task_id", "task_type", "assignment_length"],
+    "Bee_Types": ["type_id", "type_name", "age"],
+    "Bee_Tasks": ["bee_id", "task_id"],
+    "Task_Cells": ["task_id", "cell_id"]
   }
   window.onload = function() {
     var entitySel = document.getElementById("entity");
