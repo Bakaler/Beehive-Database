@@ -30,8 +30,12 @@ def create():
         bee_type = request.form['bee_type']
         dob = request.form['dob']
         bee_name = request.form['bee_name']
-        query = 'INSERT INTO Bees (bee_type, dob, bee_name) VALUES (%s,%s,%s)'
-        data = (bee_type, dob, bee_name)
+        if bee_type == "None":
+            query = 'INSERT INTO Bees (bee_type, dob, bee_name) VALUES (NULL,%s,%s)'
+            data = (dob, bee_name)
+        else:
+            query = 'INSERT INTO Bees (bee_type, dob, bee_name) VALUES (%s,%s,%s)'
+            data = (bee_type, dob, bee_name)
         execute_query(db_connection, query, data)
 
         return redirect(url_for('bee.index'))
@@ -56,8 +60,12 @@ def update(bee_id):
         dob = request.form['dob']
         bee_name = request.form['bee_name']
 
-        query = 'UPDATE Bees SET bee_type = %s, dob = %s, bee_name = %s WHERE bee_id = %s;'
-        data = (bee_type, dob, bee_name, bee_id)
+        if bee_type == "None":
+            query = 'UPDATE Bees SET bee_type = NULL, dob = %s, bee_name = %s WHERE bee_id = %s;'
+            data = (dob, bee_name, bee_id)
+        else:
+            query = 'UPDATE Bees SET bee_type = %s, dob = %s, bee_name = %s WHERE bee_id = %s;'
+            data = (bee_type, dob, bee_name, bee_id)
         execute_query(db_connection, query, data)
         return redirect(url_for('bee.index'))
 

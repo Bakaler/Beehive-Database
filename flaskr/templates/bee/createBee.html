@@ -7,6 +7,7 @@
 {% block content %}
   <form id="addbee" action="/createBee" method="post">
     Bee Type: <select name="bee_type">
+      <option value="None"> None</option>
       {% for type in types %}
         <option value="{{type[0]}}"> {{ type[1] }}</option>
       {% endfor %}
