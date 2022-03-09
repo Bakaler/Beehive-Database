@@ -1,3 +1,12 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Search{% endblock %}</h1>
+{% endblock %}
+
+
+{% block content %}
+
 <script>
   var entityAttributes = {
     "Bees": ["bee_id", "bee_type", "bee_name"],
@@ -8,41 +17,40 @@
     "Task_Cells": ["task_id", "cell_id"]
   }
   window.onload = function() {
-    var entitySel = document.getElementById("entity");
-    var attributeSel = document.getElementById("attribute");
+    var ent = document.getElementById("entity");
+    var att = document.getElementById("attribute");
     for (var x in entityAttributes) {
-      entitySel.options[entitySel.options.length] = new Option(x);
-      console.log(entityAttributes[x])
+      ent.options[ent.options.length] = new Option(x);
     }
-    entitySel.onchange = function() {
-      attributeSel.length = 1;
-      var y = entityAttributes[entitySel.value];
+    ent.onchange = function() {
+      att.length = 1;
+      var y = entityAttributes[ent.value];
       for (var i = 0; i < y.length; i++) {
-        attributeSel.options[attributeSel.options.length] = new Option(y[i]);
+        att.options[att.options.length] = new Option(y[i]);
       }
     }
   }
+  function checkValues() {
+    var ent = document.getElementById("entity")
+    var att = document.getElementById("attribute")
+    if (ent.value === "null" || att.value === "null") {
+      alert("Please select an entity and attribute.")
+      return false;
+    }
+    return true;
+  }
 </script>
 
-{% extends 'base.html' %}
-
-{% block header %}
-  <h1>{% block title %}Search{% endblock %}</h1>
-{% endblock %}
-
-
-{% block content %}
-
   <div>
-    <form action="{{ url_for('search.results') }}" method="GET">
+    <form action="{{ url_for('search.results') }}" onsubmit="return checkValues()" method="GET">
       Entity:
       <select name="entity" id="entity">
-        <option value="" selected="selected">Select entity</option>
+        <option value=null selected disabled>Select entity</option>
       </select>
       <br>
       Attribute:
       <select name="attribute" id="attribute">
-        <option value="" selected="selected">Select attribute</option>
+        <option value=null selected disabled>Select attribute</option>
       </select>
       <br>
       Value:
@@ -50,8 +58,7 @@
       <br>
       <button action="submit" method="GET">Search</button>
     </form>
+
   </div>
 
 {% endblock %}
-
-<!-- <option value=""></option> -->
