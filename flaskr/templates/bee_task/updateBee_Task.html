@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Update Bee_Task{% endblock %}</h1>
+{% endblock %}
+
+
+{% block content %}
+<form id="updateBee_Tasks" action="/{{bee_tasks[0]}}/{{bee_tasks[1]}}/updateBee_Tasks" method="POST">
+  Bee id: <select name="bee_id">
+      <option value="{{bee_tasks[0]}}"> {{bee_tasks[0]}} </option>
+    {% for bee in bees %}
+      <option value="{{bee[0]}}"> {{bee[0]}}</option>
+    {% endfor %}
+    </select>
+  
+    Task id: <select name="task_id">
+      <option value="{{bee_tasks[1]}}"> {{bee_tasks[1]}} </option>
+    {% for task in tasks %}
+      <option value="{{task[0]}}"> {{task[0]}}</option>
+    {% endfor %}
+    </select>
+    
+  <input type="submit" value="Update">
+</form>
+<br/>
+{% endblock %}
+

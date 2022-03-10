@@ -50,6 +50,39 @@ def get_bee_task(bee_id, task_id, check_author=True):
 
     return bee_task
 
+@bp.route('/<int:bee_id>/<int:task_id>/updateBee_Tasks', methods=('GET', 'POST'))
+def update(bee_id, task_id):
+    bee_tasks = get_bee_task(bee_id, task_id)
+
+    if request.method == 'POST':
+        bee_id_n = request.form['bee_id']
+        task_id_n = request.form['task_id']
+        error = None
+
+        if not bee_id_n:
+            error = 'bee_id is required'
+
+        if not task_id_n:
+            error += ' task_id is required'
+
+        if error is not None:
+            flash(error)
+
+        else:
+            db_connection = connect_to_database()
+            query = 'UPDATE Bee_Tasks SET bee_id = %s, task_id = %s WHERE bee_id = %s and task_id = %s;'
+            data = (bee_id_n, task_id_n, bee_id, task_id)
+            execute_query(db_connection, query, data)
+            return redirect(url_for('bee_task.index'))
+
+    db_connection = connect_to_database()
+    query = 'Select bee_id FROM Bees ORDER BY bee_id ASC;'
+    bees = execute_query(db_connection, query).fetchall();
+
+    query = 'Select task_id FROM Tasks ORDER BY task_id ASC;'
+    tasks = execute_query(db_connection, query).fetchall();
+    return render_template('bee_task/updateBee_Task.html', bee_tasks=bee_tasks, bees=bees, tasks=tasks)
+
 
 @bp.route('/<int:bee_id>/<int:task_id>/deleteBee_Task', methods=('POST',))
 def delete(bee_id, task_id):

@@ -15,6 +15,7 @@
       <th> Task Type</th>
       <th> Cell ID</th>
       <th> Cell Type</th>
+      <th> Update</th>
       <th> Delete</th>
     </tr>
   </thead>
@@ -25,6 +26,11 @@
       <td>{{ r[1] }}</td>
       <td>{{ r[2] }}</td>
       <td>{{ r[3] }}</td>
+      <td>
+        <form action="{{ url_for('task_cell.update', task_id=r.0, cell_id=r.2) }}" method="GET">
+          <input type="submit" value="Update">
+        </form>
+      </td>
       <td>
         <form action="{{ url_for('task_cell.delete', task_id=r.0, cell_id=r.2) }}" method="POST">
           <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">

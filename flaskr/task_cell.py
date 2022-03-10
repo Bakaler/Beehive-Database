@@ -50,6 +50,39 @@ def get_task_cell(task_id, cell_id, check_author=True):
 
     return task_cell
 
+@bp.route('/<int:task_id>/<int:cell_id>/updateTask_Cell', methods=('GET', 'POST'))
+def update(task_id, cell_id):
+    task_cell = get_task_cell(task_id, cell_id)
+
+    if request.method == 'POST':
+        task_id_n = request.form['task_id']
+        cell_id_n = request.form['cell_id']
+        error = None
+
+        if not task_id_n:
+            error = 'task_id is required'
+
+        if not cell_id_n:
+            error += ' cell_id is required'
+
+        if error is not None:
+            flash(error)
+
+        else:
+            db_connection = connect_to_database()
+            query = 'UPDATE Task_Cells SET task_id = %s, cell_id = %s WHERE task_id = %s and cell_id = %s;'
+            data = (task_id_n, cell_id_n, task_id, cell_id)
+            execute_query(db_connection, query, data)
+            return redirect(url_for('task_cell.index'))
+
+    db_connection = connect_to_database()
+    query = 'Select cell_id FROM Cells ORDER BY cell_id ASC;'
+    cells = execute_query(db_connection, query).fetchall();
+
+    query = 'Select task_id FROM Tasks ORDER BY task_id ASC;'
+    tasks = execute_query(db_connection, query).fetchall();
+    return render_template('task_cell/updateTask_Cell.html', task_cell=task_cell, cells=cells, tasks=tasks)
+
 
 @bp.route('/<int:task_id>/<int:cell_id>/deleteTask_Cell', methods=('POST',))
 def delete(task_id, cell_id):

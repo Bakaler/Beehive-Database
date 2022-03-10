@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Update Task_cells{% endblock %}</h1>
+{% endblock %}
+
+
+{% block content %}
+<form id="updateTask_Cell" action="/{{task_cell[0]}}/{{task_cell[1]}}/updateTask_Cell" method="POST">
+    Task id: <select name="task_id">
+        <option value="{{task_cell[0]}}"> {{task_cell[0]}} </option>
+      {% for task in tasks %}
+        <option value="{{task[0]}}"> {{task[0]}}</option>
+      {% endfor %}
+      </select>
+    Cell id: <select name="cell_id">
+        <option value="{{task_cell[1]}}"> {{task_cell[1]}} </option>
+      {% for cell in cells %}
+        <option value="{{cell[0]}}"> {{cell[0]}}</option>
+      {% endfor %}
+      </select>
+  <input type="submit" value="Update">
+</form>
+<br/>
+{% endblock %}
