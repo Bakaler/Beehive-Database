@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Update Bee{% endblock %}</h1>
+  <h1>{% block title %}Update Bee Type{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <form id="updateBee_Type" action="/{{bee_type[0]}}/updateBee_Type" method="POST">
-    Type Name: <input type="text" name="type_name" value = "{{bee_type[1]}}"><br>
-    Age: <input type="text" name="age" value = "{{bee_type[2]}}" required><br>
+    Type Name: <input type="text" name="type_name" value = "{{bee_type[1]}}">
+    Age: <input type="text" name="age" value = "{{bee_type[2]}}" required>
     Description: <input type="text" name="description" value = "{{bee_type[3]}}" required><br>
-    <input type="submit" value="Update">
+    <input type="submit" class="wbutton" value="Update">
   </form>
 <br/>
 {% endblock %}

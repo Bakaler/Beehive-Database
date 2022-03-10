@@ -76,10 +76,10 @@ def update(task_id, cell_id):
             return redirect(url_for('task_cell.index'))
 
     db_connection = connect_to_database()
-    query = 'Select cell_id FROM Cells ORDER BY cell_id ASC;'
+    query = 'Select cell_id, cell_type FROM Cells ORDER BY cell_id ASC;'
     cells = execute_query(db_connection, query).fetchall();
 
-    query = 'Select task_id FROM Tasks ORDER BY task_id ASC;'
+    query = 'Select task_id, task_type FROM Tasks ORDER BY task_id ASC;'
     tasks = execute_query(db_connection, query).fetchall();
     return render_template('task_cell/updateTask_Cell.html', task_cell=task_cell, cells=cells, tasks=tasks)
 

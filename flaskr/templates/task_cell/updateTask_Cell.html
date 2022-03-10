@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Update Task_cells{% endblock %}</h1>
+  <h1>{% block title %}Update Task Cell{% endblock %}</h1>
 {% endblock %}
 
 
 {% block content %}
 <form id="updateTask_Cell" action="/{{task_cell[0]}}/{{task_cell[1]}}/updateTask_Cell" method="POST">
-    Task id: <select name="task_id">
-        <option value="{{task_cell[0]}}"> {{task_cell[0]}} </option>
-      {% for task in tasks %}
-        <option value="{{task[0]}}"> {{task[0]}}</option>
-      {% endfor %}
+  Task ID: <select name="task_id">
+    {% for task in tasks %}
+      {% if task_cell[0] == task[0] %}
+      <option value="{{ task[0] }}" selected> {{ task[0] }} - {{ task[1] }}</option>
+      {% else %}
+      <option value="{{ task[0] }}"> {{ task[0] }} - {{ task[1] }}</option>
+      {% endif %}
+    {% endfor %}
+      </select> 
+    <br>
+    Cell ID: <select name="cell_id">
+    {% for cell in cells %}
+      {% if task_cell[1] == cell[0] %}
+      <option value="{{ cell[0] }}" selected> {{ cell[0] }} - {{ cell[1] }}</option>
+      {% else %}
+      <option value="{{ cell[0] }}"> {{ cell[0] }} - {{ cell[1] }}</option>
+      {% endif %}
+    {% endfor %}
       </select>
-    Cell id: <select name="cell_id">
-        <option value="{{task_cell[1]}}"> {{task_cell[1]}} </option>
-      {% for cell in cells %}
-        <option value="{{cell[0]}}"> {{cell[0]}}</option>
-      {% endfor %}
-      </select>
-  <input type="submit" value="Update">
+      <br>
+  <input type="submit" class="wbutton" value="Update">
 </form>
 <br/>
 {% endblock %}

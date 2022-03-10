@@ -6,9 +6,9 @@
 
 {% block content %}
   <form id="updateBee" action="/{{task[0]}}/updateTask" method="POST">
-    Task Type: <input type="text" name="task_type" value = "{{task[1]}}"><br>
-    Description: <input type="text" name="description" value = "{{task[2]}}" required><br>
+    Task Type: <input type="text" name="task_type" value = "{{task[1]}}">
+    Description: <input type="text" name="description" value = "{{task[2]}}" required>
     Assignment Length: <input type="number" name="assignment_length" value = "{{task[3]}}" required><br>
-    <input type="submit" value="Update">
+    <input type="submit" class="wbutton" value="Update">
   </form>
 {% endblock %}

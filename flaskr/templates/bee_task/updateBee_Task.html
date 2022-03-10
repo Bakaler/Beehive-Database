@@ -1,27 +1,33 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Update Bee_Task{% endblock %}</h1>
+  <h1>{% block title %}Update Bee Task{% endblock %}</h1>
 {% endblock %}
 
 
 {% block content %}
-<form id="updateBee_Tasks" action="/{{bee_tasks[0]}}/{{bee_tasks[1]}}/updateBee_Tasks" method="POST">
-  Bee id: <select name="bee_id">
-      <option value="{{bee_tasks[0]}}"> {{bee_tasks[0]}} </option>
+<form id="updateBee_Tasks" action="/{{bee_task[0]}}/{{bee_task[1]}}/updateBee_Tasks" method="POST">
+  Bee ID: <select name="bee_id">
     {% for bee in bees %}
-      <option value="{{bee[0]}}"> {{bee[0]}}</option>
+        {% if bee_task[0] == bee[0] %}
+        <option value="{{ bee[0] }}" selected> {{ bee[0] }} - {{ bee[1] }}</option>
+        {% else %}
+        <option value="{{ bee[0] }}"> {{ bee[0] }} - {{ bee[1] }}</option>
+        {% endif %}
     {% endfor %}
     </select>
-  
-    Task id: <select name="task_id">
-      <option value="{{bee_tasks[1]}}"> {{bee_tasks[1]}} </option>
-    {% for task in tasks %}
-      <option value="{{task[0]}}"> {{task[0]}}</option>
+    <br>
+    Task ID: <select name="task_id">
+      {% for task in tasks %}
+        {% if bee_task[1] == task[0] %}
+        <option value="{{ task[0] }}" selected> {{ task[0] }} - {{ task[1] }}</option>
+        {% else %}
+        <option value="{{ task[0] }}"> {{ task[0] }} - {{ task[1] }}</option>
+        {% endif %}
     {% endfor %}
     </select>
-    
-  <input type="submit" value="Update">
+  <br>
+  <input type="submit" class="wbutton" value="Update">
 </form>
 <br/>
 {% endblock %}
