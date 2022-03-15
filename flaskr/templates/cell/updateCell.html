@@ -8,7 +8,7 @@
   <form id="updateCell" action="/{{cell[0]}}/updateCell" method="POST">
     Cell Type: <input type="text" name="cell_type" value ={{cell[1]}} required>
     Location: <input type="text" name="location" value ={{cell[2]}} required>
-    Size: <input type="number" name="size" value ={{cell[3]}} required><br>
+    Size: <input type="number" min="1" name="size" value ={{cell[3]}} required><br>
     <input type="submit" class="wbutton" value="Update">
   </form>
 <br/>
