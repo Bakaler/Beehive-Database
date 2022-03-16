@@ -15,29 +15,7 @@
 ###############################################################################
 **********************************************
 
-- MYSQL 
-    - All the tables have been created. Unsure if any changes will have to be made as of yet though
-    - Currently bee type on delete = set to null
-    - other on deletes set to cascade (deletion continution)
-
-- Search 
-    - Have no idea where we want to implement this yet, maybe create a page for search that allows
-        users to search for a bee, a task, or a cell and returns a table of said type and all others 
-            This search can either search for 
-        bee, cell, or task
-    With 'bee' for example, our search will return a table with all task_bee, and task_cell, that corresond with that bee/task 
-
-        Bee -> McFly
-        Task    Cell
-        001     001
-        002     001
-        003     012
-        004     110
-        005     119
-        006     832
-        007     151
-
-    This means we need something that selects from bee_task, and then joins a task_cell table where t_b.task_id = t_c.task_id
+ALL DONE!! WOOT WOOT
 
 **********************************************
 ###############################################################################
@@ -45,63 +23,7 @@
 ###############################################################################
 **********************************************
 
--Bee
--Task
-
-Notes
-    Bee is almost operational and totally functional!
-    I have began working on the task functionality which is going to be using a lot of the same
-        operations as Bee, however, it is going to be where our search funcationality is implemented 
-        alongside as displaying a multi-joined tabel that includes
-            task
-            task_cells
-            task_bees
-
-Bee -
-
-    bee.py
-        Create
-            Make sure that null values can not be implemented with the exception of bee type
-        
-        Search
-            Zero implementation
-        
-        Misc
-            Task_bee deletion (?)
-
-    bee.html 
-        - Search bar needs full implementation
-    
-    bee general
-        - m:m crud operations w/ task (though, task needs full implementation b4 hand)
-
-
-Task
-
-    task.py
-        Create
-            This needs to simultatniously create
-                - Task entity
-                - task_bees entity
-                - task_cells entity
-
-        Delete
-            This needs to simultatniously delete
-                - Task entity
-                - task_bees entity
-                - task_cells entity
-
-        
-        Search
-            Zero implementation
-        
-
-    task.html 
-        - Search bar needs full implementation
-    
-    task general
-        - m:m crud operations 
-
+None
 
 **********************************************
 ###############################################################################
@@ -142,3 +64,47 @@ app.config['MYSQL_DB'] = 'cs340_bakera5'
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 ###############################################################################################
 ###############################
+
+
+**********************************************
+###############################################################################
+5 - Feedback
+###############################################################################
+**********************************************
+
+Step 5 Feedback/Fixes
+	We changed the update page for Bees to default to the bee’s current bee type instead of the first bee type in the table and added the type name to the dropdown menu so the user doesn’t have to reference the Bee Types table to match type IDs with names. We also added checks to the search function to ensure a valid entity and attribute have been selected (previously returned an error page).
+
+Step 4 Feedback/Fixes
+	We corrected some syntax errors in the DDQ file and made a few changes to ensure consistent naming conventions in the file. We also tested the DDQ file by importing it to make sure it ran smoothly there. We also added additional columns to the M:M tables per previous feedback and updated the Cell entity in the outline to include the missing attribute.
+
+Step 3 Feedback/Fixes
+	The 1:M relationship between Bees and Bee_Types has been updated to be nullable per project requirements. We have also added pages to display and manage our two M:M tables.
+
+Step 2 Feedback/Fixes
+Based on our feedback, we added more specific figures relating to the scope of our database to the overview and added new details to ensure clarity regarding the maintenance of the hive and the way our entities will interact with one another.
+	We also modified several entities to make their purposes clearer. For example, we got rid of Task_Types as a separate entity and added task_type and description as attributes to Tasks. We also fleshed out other entities by adding more attributes.
+	Additionally, we fixed some errors in the attribute details (particularly PK and FK labels) and made sure naming conventions were uniform across the document.
+
+Step 1 Feedback/Fixes
+Our initial DB design had a LOT of entities going on, circular relations, and a plethora of attributes. Some examples: we included outside entities including flowers and flower patches, as well as internal ones like materials. We were advised to both cut out circles as well as remove the number of entities we had from 11 down to 7. One thing we decided to keep, that was advised against, was our ‘Cell’ entities as we felt they played a big role in task management and are important to the hive cluster.
+Grader Feedback - Step 5
+Here are some quick reminders (again, just a general notice, don't panic if you satisfy these) of some of the most important things:
+1) Make sure your schema is up to date, if any changes were made to your project in recent weeks, the schema must be updated. Your final web app will be graded based on your schema.
+2) Make sure at least one relationship is null-able (one FK can be null).
+3) Make sure each of your entities gets its own web page. Good rule of thumb is 1 entity : 1 page.
+4) Make sure it is very clear where your M:M tables/entities are located in your webapp, whether on their own page (most clear) or folded into a component entity page.
+5) *** THIS ONE IS IMPORTANT ***: Many students misunderstand the M:M delete requirement. This requirement isn't that you can individually delete a M:M entry (though that functionality is good to implement), but that deleting a component of an entry will cascade delete any relevant M:M entries. To give an example, if I have a M:M relationship between Products and Orders represented by Products_Orders. If I delete the "Playstation 5" Product, any entry in my Products_Orders table that involves a playstation 5 should also be cascade deleted.
+Grader Feedback - Step 4
+Just a general message to all my groups (don't panic this isn't directed at any one group): Make sure your DDQ sql file successfully imports to https://classmysql.engr.oregonstate.edu/index.php (phpmyadmin) as part of the grading rubric for the final submission involves importing without any errors.
+Grader Feedback - Step 3
+Your 'Cells' entity has a description attribute that isn't reflected in the Cells table as a column.
+Eventually down the road before final submission you're going to want to add identifying columns to your Bee_Taskss and Task_Cells table. You can pull and display cell_type, task_type, and bee_type to show as columns alongside each respective id from each id. This is so that the user doesn't have to open two simultaneous pages to figure out which id corresponds to which identifying name or type. To be clear this does not mean you need to add any new attributes, this is the beauty of queries in that we can display all kinds of information in our tables from just id's with JOINS and the like.
+Don't forget to model your intersect tables somewhere, whether that be their own entity page or within another page. It should be very clear where the CRUD implementation is for the intersect tables when it comes time for final grading.
+Remember that a project requirement is to have a null-able relationship. This is accomplished via a FK that can be null.
+Grader Feedback - Step 2
+1) While database scope can be inferred from your numerical fact, be sure to include a specific tidbit about the database, i.e. "Our system should be capable of handling X bee entries per year."
+2) A glance at your database tells me a few of your entities, as they exist currently, should be merged. Now don't misread this, if you're able to go through and expand on attributes, this can be avoided. But as an example, in its current form Task_Types is essentially the entirety of Tasks. Tasks has no unique identifying attributes that aren't already represented by Task_Types. It's a bit difficult to articulate this point over text, so if you need to be sure to stop by office hours, but it would be wise to go through your current entities and see if you can expand on their attributes to justify their presence as Entities in your database, and if you can't, simply merge where applicable. In the databases' current form, Tasks should simply be task_id, type, description and Task_Types shouldn't need to exist. Another example of expanding attributes is adding a description attribute to the Cells attribute.
+The foundation of your database is great and I love the uniqueness of the idea, but you need to go through and add a bit of meat on the bones via attributes. While it's not technically "illegal" to have entities with very few attributes, conventionally, most entities should have several attributes to justify the existence/presence of said entity. Again, if you need any help with this or want further clarification, be sure to stop by office hours or DM me on teams; I'm here to help you succeed, and it's better to make changes and flesh out your database early in the process so you don't have to mess with it too much later down the road. You can be as creative as you desire when it comes to attributes, any type of information descriptor can be made into an attribute.
+3) You have an attribute "Type_Name" listed as the PK of Bee_Types. This should be a standard attribute, not the PK of the entity. An entity PK conventionally is an auto-incrementing id variable that simply differentiates one entry from another and can be used as a key to access all the other attributes/information about said entry. So in this case, it would be ideal to have a PK "type_id" to serve this function. A good rule of thumb when it comes to PKs is that anything the database user inputs manually should not be a PK. Same applies to Task_Types. Many times, people mistake PK attributes and have a tendency to want to make them names or descriptors. However, remember that by querying the id/PK, you can access the name and all other associated attributes. I can query "type_id" '7', and that will give me access to the 'name' attribute of id 7, the age value of id 7, and the description of id 7.
+4) Your FKs mentioned to establish relationships should be clearly denoted, think you missed the FK label in a couple spots. These FKs should also have their type listed (i.e. int) and any constraints.
