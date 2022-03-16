@@ -6,10 +6,10 @@
 
 {% block content %}
   <form id="addcell" action="/createCell" method="post">
-    Cell Type: <input type="text" name="cell_type" required><br>
-    Location: <input type="text" name="location" required><br>
-    Size: <input type="number" name="size" required><br>
-    <input type="submit" value="Save">
+    Cell Type: <input type="text" name="cell_type" required>
+    Location: <input type="text" name="location" required>
+    Size: <input type="number" min="1" name="size" required><br>
+    <input type="submit" class="wbutton" value="Submit">
   </form>
 <br/>
 {% endblock %}

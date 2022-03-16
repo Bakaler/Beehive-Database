@@ -24,8 +24,7 @@ def results():
 
     column_query = 'DESCRIBE {}'.format(entity)
     result2 = execute_query(db_connection, column_query)
-
-    if search_term == 'None':
+    if search_term == '':
         query = f"SELECT * FROM {entity} WHERE {attribute} IS NULL"
     elif attribute[-2:] != 'id' and attribute not in ints:
         query = f"SELECT * FROM {entity} WHERE {attribute}='{search_term}'" 

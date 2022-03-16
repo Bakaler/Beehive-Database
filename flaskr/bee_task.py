@@ -52,7 +52,7 @@ def get_bee_task(bee_id, task_id, check_author=True):
 
 @bp.route('/<int:bee_id>/<int:task_id>/updateBee_Tasks', methods=('GET', 'POST'))
 def update(bee_id, task_id):
-    bee_tasks = get_bee_task(bee_id, task_id)
+    bee_task = get_bee_task(bee_id, task_id)
 
     if request.method == 'POST':
         bee_id_n = request.form['bee_id']
@@ -76,12 +76,12 @@ def update(bee_id, task_id):
             return redirect(url_for('bee_task.index'))
 
     db_connection = connect_to_database()
-    query = 'Select bee_id FROM Bees ORDER BY bee_id ASC;'
+    query = 'Select bee_id, bee_name FROM Bees ORDER BY bee_id ASC;'
     bees = execute_query(db_connection, query).fetchall();
 
-    query = 'Select task_id FROM Tasks ORDER BY task_id ASC;'
+    query = 'Select task_id, task_type FROM Tasks ORDER BY task_id ASC;'
     tasks = execute_query(db_connection, query).fetchall();
-    return render_template('bee_task/updateBee_Task.html', bee_tasks=bee_tasks, bees=bees, tasks=tasks)
+    return render_template('bee_task/updateBee_Task.html', bee_task=bee_task, bees=bees, tasks=tasks)
 
 
 @bp.route('/<int:bee_id>/<int:task_id>/deleteBee_Task', methods=('POST',))
